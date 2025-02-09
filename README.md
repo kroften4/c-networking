@@ -6,4 +6,4 @@ I'm using sys/socket so only works on Unix machines
 provided a port runs an http server which rn returns a dummy html page
 
 ## simple client
-reads via recv() once and stops
+provided an ip and a port reads via recv() once and stops
