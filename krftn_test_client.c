@@ -8,8 +8,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define SERVER_NAME "localhost"
-#define SERVER_PORT "3490"
 #define BUF_LEN 1000
 
 int main(int argc, char *argv[]) {
@@ -17,12 +15,16 @@ int main(int argc, char *argv[]) {
     struct addrinfo hints;
     struct addrinfo *res;
 
-    // get addrinfo for host
+    if (argc != 3) {
+        printf("usage: krftn_test_client <ip/name> <port>\n");
+        return EXIT_FAILURE;
+    }
+
+    // get addrinfo for remote
     memset(&hints, 0, sizeof hints);
     hints.ai_family = AF_INET;
     hints.ai_socktype = SOCK_STREAM;
-    hints.ai_addr = (struct sockaddr *)AI_PASSIVE;
-    if ((status = getaddrinfo(NULL, SERVER_PORT, &hints, &res)) != 0) {
+    if ((status = getaddrinfo(argv[1], argv[2], &hints, &res)) != 0) {
         fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
         return EXIT_FAILURE;
     }
