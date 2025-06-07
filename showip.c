@@ -70,4 +70,7 @@ int main(int argc, char **argv) {
         }
         printf("%s: %s\n", socktype, host_ip);
     }
+
+    freeaddrinfo(host_ai);
+    return 0;
 }
