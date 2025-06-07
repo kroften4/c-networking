@@ -43,6 +43,7 @@ int main(int argc, char **argv) {
     struct addrinfo *host_ai;
     int status = getaddrinfo(hostname, NULL, NULL, &host_ai);
     if (status != 0) {
+        fprintf(stderr, "getaddrinfo error: %s\n", gai_strerror(status));
         freeaddrinfo(host_ai);
         exit(1);
     }
